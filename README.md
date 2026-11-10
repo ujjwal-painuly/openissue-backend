@@ -20,6 +20,17 @@ A REST API for a lightweight repository issue-tracking and collaboration platfor
 - bcryptjs and jsonwebtoken for authentication
 - Helmet, CORS and express-rate-limit for baseline API security
 
+## Live demo
+
+The backend API is deployed on Render and connected to MongoDB Atlas.
+
+- **API homepage:** https://openissue-backend-5zye.onrender.com/
+- **Health check (includes MongoDB connection status):** https://openissue-backend-5zye.onrender.com/api/v1/health
+- **API index:** https://openissue-backend-5zye.onrender.com/api/v1
+- **Render service dashboard:** https://dashboard.render.com/web/srv-dbplsvd9fdbs73fa11n0
+
+The homepage and API index are lightweight JSON responses. Use the endpoint links above to try the deployed API. Registration and login are available at `/api/v1/auth/register` and `/api/v1/auth/login`; protected endpoints require a Bearer token.
+
 ## Run locally
 
 1. Install Node.js 20+ and start a local MongoDB server (or use a MongoDB connection URI).
@@ -86,4 +97,4 @@ The current automated tests cover pure query helpers (safe text search and pagin
 - MongoDB is required; there is no SQL database layer.
 - The access token is returned by login/register and is valid for the configured duration. Refresh-token rotation, password reset emails, OAuth, file uploads and production observability are not implemented in this MVP.
 - Public repositories are readable by authenticated users. Creating issues in a public repository is allowed for an authenticated user. Updating an issue is allowed for its author, a repository member, or the owner. Deleting issues and changing repository settings are restricted to repository maintainers/owners respectively.
-- This project has not been deployed. Configure your own database and environment variables before using it outside local development.
+- The API is deployed on Render and connected to MongoDB Atlas. The frontend is not included in this repository; deploy the React frontend separately and set `CLIENT_ORIGIN` to its origin instead of `*` for production.
