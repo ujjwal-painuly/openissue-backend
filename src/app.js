@@ -11,6 +11,9 @@ import dashboardRoutes from './routes/dashboardRoutes.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
 
 const app = express();
+// Render terminates TLS at one trusted reverse proxy. Trust only that hop so
+// express-rate-limit can use the real client IP without trusting arbitrary chains.
+app.set('trust proxy', 1);
 const allowedOrigins = env.CLIENT_ORIGIN.split(',').map((origin) => origin.trim());
 
 app.disable('x-powered-by');
