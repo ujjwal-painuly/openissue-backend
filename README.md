@@ -29,7 +29,7 @@ The backend API is deployed on Render and connected to MongoDB Atlas.
 - **API index:** https://openissue-backend-5zye.onrender.com/api/v1
 - **Render service dashboard:** https://dashboard.render.com/web/srv-dbplsvd9fdbs73fa11n0
 
-The homepage and API index are lightweight JSON responses. Use the endpoint links above to try the deployed API. Registration and login are available at `/api/v1/auth/register` and `/api/v1/auth/login`; protected endpoints require a Bearer token.
+The homepage is a small HTML landing page. The API index and health check return JSON. Use the endpoint links above to explore the deployed API. Registration and login are available at `/api/v1/auth/register` and `/api/v1/auth/login`; protected endpoints require a Bearer token.
 
 ## Run locally
 
@@ -89,7 +89,7 @@ npm test
 npm run check
 ```
 
-The current automated tests cover pure query helpers (safe text search and pagination). They do **not** replace database-backed integration tests. Before production use, add integration tests against a disposable MongoDB database, configure deployment secrets, and review the authentication/session strategy.
+The automated test suite covers query helpers, request validation and permission helper logic. It does **not** replace database-backed integration tests. Before production use, run end-to-end tests against a disposable MongoDB database, configure deployment secrets, and review the authentication/session strategy.
 
 ## Important scope notes
 
@@ -97,4 +97,4 @@ The current automated tests cover pure query helpers (safe text search and pagin
 - MongoDB is required; there is no SQL database layer.
 - The access token is returned by login/register and is valid for the configured duration. Refresh-token rotation, password reset emails, OAuth, file uploads and production observability are not implemented in this MVP.
 - Public repositories are readable by authenticated users. Creating issues in a public repository is allowed for an authenticated user. Updating an issue is allowed for its author, a repository member, or the owner. Deleting issues and changing repository settings are restricted to repository maintainers/owners respectively.
-- The API is deployed on Render and connected to MongoDB Atlas. The frontend is not included in this repository; deploy the React frontend separately and set `CLIENT_ORIGIN` to its origin instead of `*` for production.
+- The API is deployed on Render and connected to MongoDB Atlas. The frontend is not included in this repository; deploy the React frontend separately and set `CLIENT_ORIGIN` to its exact origin instead of `*` for production.
