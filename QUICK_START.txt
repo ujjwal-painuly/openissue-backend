@@ -1,0 +1,21 @@
+OPENISSUE BACKEND - QUICK START
+
+1) Install Node.js 20+ and MongoDB.
+2) Copy .env.example to .env.
+3) Put your MongoDB URI and a random 32+ character JWT_SECRET in .env.
+4) Open a terminal in this folder and run:
+
+   npm install
+   npm run dev
+
+5) Check: http://localhost:5000/api/v1/health
+6) Run the helper tests: npm test
+7) Check JavaScript syntax: npm run check
+
+React frontend API base URL:
+   http://localhost:5000/api/v1
+
+Protected routes require:
+   Authorization: Bearer <token>
+
+Read docs/LEARNING_GUIDE.md before your walkthrough and docs/API_CONTRACT.md for the endpoint details.
